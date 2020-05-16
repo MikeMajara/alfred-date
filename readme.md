@@ -28,6 +28,10 @@ You can check the time format for strftime here -> [Python strftime reference](h
 
 - [ ] Add locale settings 👅 
 
+## ACK
+
+<div>Workflow icon made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+
 ## License 🗝
 MIT License
 
