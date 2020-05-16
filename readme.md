@@ -32,3 +32,4 @@ You can check the time format for strftime here -> [Python strftime reference](h
 MIT License
 
 Copyright (c) 2020 MikeMajara
+
