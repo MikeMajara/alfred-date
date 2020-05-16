@@ -1,5 +1,10 @@
 # Date timestamp 🕐
 
+## Motivation
+There is a bunch of ways to get your date right, right? And now that we have intelligent operative systems that parse our dates automatically we could go to Apple Notes whenever we want to get an date automatically detected, write it down, and wait for macOS to detect it is a date, then we could go click on it and create an event...
+
+Or we could just install this workflow parse whatever we want in whichever language we want, and copy pasta it as needed. You choose! 😉
+
 ## Description 📜
 Gets timestamp using natural language
 Examples:
@@ -40,7 +45,7 @@ You will also find a file `locales.json`, feel free to add support for your loca
 
 ## Roadmap 🛣
 
-- [x] Add locale settings 👅 
+- [x] Add locale settings 👂🏻👅 5/16/20, 6:06 PM ← this date was generated with this workflow. Could you not tell?
 
 ## ACK
 
