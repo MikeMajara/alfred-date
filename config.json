@@ -1,6 +1,6 @@
 {
     "languages": ["en", "es"],
-    "output_language": "en_GB",
+    "out_lang": "en",
     "formats": [
         {
             "title": "Short",

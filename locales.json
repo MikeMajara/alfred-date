@@ -2,12 +2,12 @@
     "en": {
         "name": "English (United States)  ",
         "locale": "en_US",
-        "default_format": "M/D/yyyy"
+        "default_format": "MM/d/yyyy"
     },
     "zh": {
         "name": "Chinese (simplified, PRC)",
         "locale": "zh_CN",
-        "default_format": "yyyy/M/d"
+        "default_format": "yyyy/MM/dd"
     },
     "ru": {
         "name": "Russian (Russia)         ",
