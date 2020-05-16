@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>bundleid</key>
-	<string>com.MikeMajara.dateparser</string>
+	<string>com.MikeMajara.datetimeparser</string>
 	<key>category</key>
 	<string>Productivity</string>
 	<key>connections</key>
@@ -14,11 +14,11 @@
 	<key>createdby</key>
 	<string>Mike Majara</string>
 	<key>description</key>
-	<string>Get date timestamp</string>
+	<string>Get date time stamp from natural language parsing</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
-	<string>Date</string>
+	<string>Date time</string>
 	<key>objects</key>
 	<array>
 		<dict>
@@ -101,7 +101,36 @@ sys.stdout.write(json.dumps({"items":items}))
 		</dict>
 	</array>
 	<key>readme</key>
-	<string></string>
+	<string># Date timestamp 🕐
+
+## Description 📜
+Gets timestamp using natural language
+Examples:
+`dt now`
+`dt 1 day ago`
+`dt in 2 weeks`
+`dt six hours ago`
+
+Usage:
+1. Insert the keyword `dt`
+2. Type in natural language a moment as seen in the examples above.
+3. Navigate through the list to select a timestamp format
+4. ⌘ + c to copy the result shown
+
+## Instalation 👷🏻‍♂️
+1. [Download the workflow](https://github.com/MikeMajara/alfred-date-time-stamp-parser/releases/tag/0.1.0)
+2. Double click the `.alfredworkflow` file to install
+
+💡 **Required: [Alfred Powerpack](https://www.alfredapp.com/powerpack/)**.
+
+## Settings ⚙️
+Inside the workflow folder, there is a file called `config.json`, use it to configure the timestamps you want to see in your workflow.
+You can check the time format for strftime here -&gt; [Python strftime reference](https://strftime.org/)
+
+## License 🗝
+MIT License
+
+Copyright (c) 2020 MikeMajara</string>
 	<key>uidata</key>
 	<dict>
 		<key>BDA9AD37-482C-4A2F-A208-1DD359EE0432</key>
@@ -112,7 +141,11 @@ sys.stdout.write(json.dumps({"items":items}))
 			<integer>165</integer>
 		</dict>
 	</dict>
+	<key>variablesdontexport</key>
+	<array/>
+	<key>version</key>
+	<string>0.1.0</string>
 	<key>webaddress</key>
-	<string></string>
+	<string>https://github.com/MikeMajara/alfred-date-time-stamp-parser.git</string>
 </dict>
 </plist>
