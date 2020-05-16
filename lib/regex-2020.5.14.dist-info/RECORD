@@ -1,0 +1,14 @@
+regex-2020.5.14.dist-info/INSTALLER,sha256=zuuue4knoyJ-UwPPXg8fezS7VCrXJQrAP7zeNuwvFQg,4
+regex-2020.5.14.dist-info/METADATA,sha256=66IN9gg09am0jRBFpvmqE_tQLjD1lgPdKa2fwwQznWI,39055
+regex-2020.5.14.dist-info/RECORD,,
+regex-2020.5.14.dist-info/WHEEL,sha256=xUzOoG633RFcI7A3WIj4bNcILYMiyGoCbbkAAOH-7AE,111
+regex-2020.5.14.dist-info/top_level.txt,sha256=aQmiDMhNTF26cCK4_7D-qaVvhbxClG0wyCTnEhkzYBs,6
+regex/__init__.py,sha256=9slNQEb4SCZ9LncNzcQvqmkyxXlcOAF7QwAwigxWjsw,65
+regex/__init__.pyc,,
+regex/_regex.so,sha256=VatFqTy3dscbO_vqBeGPx1sIKwCheHKe3SCXtQiSaBw,735380
+regex/_regex_core.py,sha256=wF65Yoiqcsn_RQk8cNSHgPINbV5-5KKEeMoKVrXyvBo,142617
+regex/_regex_core.pyc,,
+regex/regex.py,sha256=V0TaxHG5RZICwNOgcnbMH6AuS5m3NV86ZK4Zn-ClNkA,31783
+regex/regex.pyc,,
+regex/test_regex.py,sha256=ddXi4P4yBMy5kgft6NktzMuoB1mp5mgXnkHRf637LFM,204197
+regex/test_regex.pyc,,

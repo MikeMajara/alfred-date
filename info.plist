@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.MikeMajara.dateparser</string>
+	<key>category</key>
+	<string>Productivity</string>
+	<key>connections</key>
+	<dict>
+		<key>BDA9AD37-482C-4A2F-A208-1DD359EE0432</key>
+		<array/>
+	</dict>
+	<key>createdby</key>
+	<string>Mike Majara</string>
+	<key>description</key>
+	<string>Get date timestamp</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Date</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<true/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>68</integer>
+				<key>keyword</key>
+				<string>dt</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>1</integer>
+				<key>queuemode</key>
+				<integer>2</integer>
+				<key>runningsubtext</key>
+				<string>Guessing the moment you are refering to...</string>
+				<key>script</key>
+				<string>import os
+import sys
+import json
+
+sys.path = [os.path.abspath('./lib')] + sys.path
+import dateparser
+
+query = sys.argv[1]
+dt = dateparser.parse(query)
+
+with open("./config.json") as f:
+    config = json.load(f)
+
+fmts = config['formats']
+
+items = [
+    {
+        "valid": False,
+        "icon": None,
+        "title": dt.strftime(fmt['format_string']),
+        "subtitle": fmt['format_string'],
+        "text": {
+            "copy": dt.strftime(fmt['format_string']),
+            "largetype": dt.strftime(fmt['format_string'])
+        }
+    } for fmt in fmts
+]
+
+sys.stdout.write(json.dumps({"items":items}))
+</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string>Type moment in natural language. Then ⌘ + c or ⌘ + l to show off.</string>
+				<key>title</key>
+				<string>Date time for given moment</string>
+				<key>type</key>
+				<integer>3</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>BDA9AD37-482C-4A2F-A208-1DD359EE0432</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>BDA9AD37-482C-4A2F-A208-1DD359EE0432</key>
+		<dict>
+			<key>xpos</key>
+			<integer>250</integer>
+			<key>ypos</key>
+			<integer>165</integer>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string></string>
+</dict>
+</plist>

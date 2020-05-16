@@ -1,0 +1,12 @@
+{
+    "formats": [
+        {
+            "title": "Full",
+            "format_string": "%A %d %B %Y"
+        },
+        {
+            "title": "ISO 8601",
+            "format_string": "%Y-%m-%dT%H:%M:%S%ZZ"
+        }
+    ]
+}
