@@ -4,6 +4,9 @@
 # alfred to take effect.
 # 
 # Useful documentation: https://www.alfredapp.com/help/workflows/inputs/script-filter/json/
+# date format patterns: https://unicode.org/reports/tr35/tr35-dates.html#Date_Format_Patterns
+# Babel documentation: http://babel.pocoo.org/en/latest/dates.html?highlight=pattern#pattern-syntax
+
 
 import os
 import sys
@@ -16,6 +19,7 @@ import json
 # pip install --prefer-binary --target=./lib dateparser
 sys.path = [os.path.abspath('./lib')] + sys.path
 import dateparser
+from babel.dates import format_datetime
 
 # Get argument
 query = sys.argv[1]
@@ -23,22 +27,25 @@ query = sys.argv[1]
 # Start your script
 # important: It's important that you print nothing else to STDOUT, or it will make your XML/JSON invalid.
 
-dt = dateparser.parse(query)
 
 with open("./config.json") as f:
     config = json.load(f)
 
 fmts = config['formats']
+lngs = config['languages']
+output_language = config['output_language']
+
+dt = dateparser.parse(query, languages=lngs)
 
 items = [
     {
         "valid": False,
         "icon": None,
-        "title": dt.strftime(fmt['format_string']),
+        "title": format_datetime(dt, format=fmt['format_string'], locale=output_language),
         "subtitle": fmt['format_string'],
         "text": {
-            "copy": dt.strftime(fmt['format_string']),
-            "largetype": dt.strftime(fmt['format_string'])
+            "copy": format_datetime(dt, format=fmt['format_string'], locale=output_language),
+            "largetype": format_datetime(dt, format=fmt['format_string'], locale=output_language)
         }
     } for fmt in fmts
 ]

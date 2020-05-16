@@ -49,30 +49,54 @@
 				<key>runningsubtext</key>
 				<string>Guessing the moment you are refering to...</string>
 				<key>script</key>
-				<string>import os
+				<string># This is not the script being executed. this is just a script
+# to test and ease the development of the workflow. Code being
+# executed is stored in info.plist and should be modified through
+# alfred to take effect.
+# 
+# Useful documentation: https://www.alfredapp.com/help/workflows/inputs/script-filter/json/
+# date format patterns: https://unicode.org/reports/tr35/tr35-dates.html#Date_Format_Patterns
+# Babel documentation: http://babel.pocoo.org/en/latest/dates.html?highlight=pattern#pattern-syntax
+
+
+import os
 import sys
 import json
 
+# add local library path to python path.
+# needed to import 3rd party library installed.
+# 
+# install command example (cd to workflow directory):
+# pip install --prefer-binary --target=./lib dateparser
 sys.path = [os.path.abspath('./lib')] + sys.path
 import dateparser
+from babel.dates import format_datetime
 
+# Get argument
 query = sys.argv[1]
-dt = dateparser.parse(query)
+
+# Start your script
+# important: It's important that you print nothing else to STDOUT, or it will make your XML/JSON invalid.
+
 
 with open("./config.json") as f:
     config = json.load(f)
 
 fmts = config['formats']
+lngs = config['languages']
+output_language = config['output_language']
+
+dt = dateparser.parse(query, languages=lngs)
 
 items = [
     {
         "valid": False,
         "icon": None,
-        "title": dt.strftime(fmt['format_string']),
+        "title": format_datetime(dt, format=fmt['format_string'], locale=output_language),
         "subtitle": fmt['format_string'],
         "text": {
-            "copy": dt.strftime(fmt['format_string']),
-            "largetype": dt.strftime(fmt['format_string'])
+            "copy": format_datetime(dt, format=fmt['format_string'], locale=output_language),
+            "largetype": format_datetime(dt, format=fmt['format_string'], locale=output_language)
         }
     } for fmt in fmts
 ]
@@ -96,6 +120,143 @@ sys.stdout.write(json.dumps({"items":items}))
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
 			<string>BDA9AD37-482C-4A2F-A208-1DD359EE0432</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<true/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>68</integer>
+				<key>keyword</key>
+				<string>dtl</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>1</integer>
+				<key>queuemode</key>
+				<integer>2</integer>
+				<key>runningsubtext</key>
+				<string>Guessing the moment you are refering to...</string>
+				<key>script</key>
+				<string># This is not the script being executed. this is just a script
+# to test and ease the development of the workflow. Code being
+# executed is stored in info.plist and should be modified through
+# alfred to take effect.
+# 
+# Useful documentation: https://www.alfredapp.com/help/workflows/inputs/script-filter/json/
+# date format patterns: https://unicode.org/reports/tr35/tr35-dates.html#Date_Format_Patterns
+# Babel documentation: http://babel.pocoo.org/en/latest/dates.html?highlight=pattern#pattern-syntax
+
+
+import os, sys
+import traceback
+import json
+
+# add local library path to python path.
+# needed to import 3rd party library installed.
+# 
+# install command example (cd to workflow directory):
+# pip install --prefer-binary --target=./lib dateparser
+sys.path = [os.path.abspath('./lib')] + sys.path
+import dateparser
+from babel.dates import format_datetime
+
+# Extract arguments from script
+args = sys.argv[1].split()
+query = " ".join(args[1:])
+
+LANGUAGE_PROVIDED = True
+# LANGUAGE_PROVIDED = os.environ['LANGUAGE_PROVIDED']
+
+# Start your script
+# important: It's important that you print nothing else to STDOUT, or it will make your XML/JSON invalid.
+
+
+with open("./config.json") as f:
+    config = json.load(f)
+
+with open("./locales.json") as f:
+    locales = json.load(f)
+
+fmts = config['formats']
+lngs = config['languages']
+olang = args[0].strip()
+
+if len(olang) == 2:
+    name = locales[olang].get('name')
+    format = locales[olang].get('default_format')
+    olang = locales[olang].get('locale')
+    
+dt = dateparser.parse(query, languages=lngs)
+
+result = {"items": []}
+try:
+    default_items = [
+        {
+            "valid": False,
+            "icon": None,
+            "title": fmt['format_string'],
+            "subtitle": format_datetime(dt, format=fmt['format_string'], locale=olang),
+            "text": {
+                "copy": format_datetime(dt, format=fmt['format_string'], locale=olang),
+                "largetype": format_datetime(dt, format=fmt['format_string'], locale=olang)
+            }
+        } for fmt in fmts
+    ]
+    result['items'] += default_items
+
+    if LANGUAGE_PROVIDED:
+
+        extra_item = {
+            "valid": False,
+            "icon": None,
+            "title": format_datetime(dt, format=format, locale=olang),
+            "subtitle": format + "Default for " + name,
+            "text": {
+                "copy": format_datetime(dt, format=format, locale=olang),
+                "largetype": format_datetime(dt, format=format, locale=olang)
+            }
+        }
+        result['items'] += [extra_item]
+
+except Exception as e:
+    # traceback.print_exc()
+    pass
+
+sys.stdout.write(json.dumps(result))
+
+
+</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string>Type moment in natural language. Then ⌘ + c or ⌘ + l to show off.</string>
+				<key>title</key>
+				<string>Date time for given moment</string>
+				<key>type</key>
+				<integer>3</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>71580B42-FC83-48F8-8DE2-341CC160D563</string>
 			<key>version</key>
 			<integer>3</integer>
 		</dict>
@@ -133,6 +294,13 @@ MIT License
 Copyright (c) 2020 MikeMajara</string>
 	<key>uidata</key>
 	<dict>
+		<key>71580B42-FC83-48F8-8DE2-341CC160D563</key>
+		<dict>
+			<key>xpos</key>
+			<integer>250</integer>
+			<key>ypos</key>
+			<integer>315</integer>
+		</dict>
 		<key>BDA9AD37-482C-4A2F-A208-1DD359EE0432</key>
 		<dict>
 			<key>xpos</key>

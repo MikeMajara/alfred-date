@@ -1,12 +1,26 @@
 {
+    "languages": ["en", "es"],
+    "output_language": "en_GB",
     "formats": [
         {
+            "title": "Short",
+            "format_string": "short"
+        },
+        {
+            "title": "Medium",
+            "format_string": "medium"
+        },
+        {
+            "title": "Long",
+            "format_string": "long"
+        },
+        {
             "title": "Full",
-            "format_string": "%A %d %B %Y"
+            "format_string": "full"
         },
         {
             "title": "ISO 8601",
-            "format_string": "%Y-%m-%dT%H:%M:%S%ZZ"
+            "format_string": "YYYY-MM-DDThh:mm:ssX"
         }
     ]
 }

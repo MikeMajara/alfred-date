@@ -1,0 +1,47 @@
+{
+    "en": {
+        "name": "English (United States)  ",
+        "locale": "en_US",
+        "default_format": "M/D/yyyy"
+    },
+    "zh": {
+        "name": "Chinese (simplified, PRC)",
+        "locale": "zh_CN",
+        "default_format": "yyyy/M/d"
+    },
+    "ru": {
+        "name": "Russian (Russia)         ",
+        "locale": "ru_RU",
+        "default_format": "dd.MM.yyyy"
+    },
+    "fr": {
+        "name": "French (France)          ",
+        "locale": "fr_FR",
+        "default_format": "dd/MM/yyyy"
+    },
+    "es": {
+        "name": "Spanish (Spain)          ",
+        "locale": "es_ES",
+        "default_format": "dd/MM/yyyy"
+    },
+    "de": {
+        "name": "German (Germany)         ",
+        "locale": "de_DE",
+        "default_format": "dd.MM.yyyy"
+    },
+    "pt": {
+        "name": "Portuguese (Brazil)      ",
+        "locale": "pt_BR",
+        "default_format": "dd/MM/yyyy"
+    },
+    "it": {
+        "name": "Italian (Italy)          ",
+        "locale": "it_IT",
+        "default_format": "dd/MM/yyyy"
+    },
+    "ja": {
+        "name": "Japanese (Japan)         ",
+        "locale": "ja_JP",
+        "default_format": "yyyy/MM/dd"
+    }
+}
