@@ -15,7 +15,7 @@ Usage:
 4. ⌘ + c to copy the result shown
 
 ## Instalation 👷🏻‍♂️
-1. [Download the workflow](https://github.com/MikeMajara/alfred-open-with-iterm2/releases/tag/0.1.0)
+1. [Download the workflow](https://github.com/MikeMajara/alfred-date-time-stamp-parser/releases/tag/0.1.0)
 2. Double click the `.alfredworkflow` file to install
 
 💡 **Required: [Alfred Powerpack](https://www.alfredapp.com/powerpack/)**.
