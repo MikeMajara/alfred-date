@@ -46,6 +46,7 @@ You will also find a file `locales.json`, feel free to add support for your loca
 ## Roadmap 🛣
 
 - [x] Add locale settings 👂🏻👅 5/16/20, 6:06 PM ← this date was generated with this workflow. Could you not tell?
+- [ ] Support for emojis in item results. (E.g.: to show flags)
 
 ## ACK
 
