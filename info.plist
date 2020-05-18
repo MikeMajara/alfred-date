@@ -144,7 +144,7 @@
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>keyword</key>
@@ -192,7 +192,10 @@ from babel.dates import format_datetime
 LANGUAGE_PROVIDED = False
 
 # Extract arguments from script
-args = sys.argv[1].split()
+if len(sys.argv) &lt;= 1:
+	args = ['now']
+else:
+	args = sys.argv[1].split()
 
 with open("./config.json") as f:
     config = json.load(f)
@@ -216,7 +219,7 @@ else:
     
 dt = dateparser.parse(query, languages=lngs)
 
-result = {"items": []}
+result = {"rerun": 1, "items": []}
 try:
     default_items = [
         {
@@ -677,7 +680,7 @@ Copyright (c) 2020 MikeMajara</string>
 			<key>xpos</key>
 			<integer>565</integer>
 			<key>ypos</key>
-			<integer>530</integer>
+			<integer>520</integer>
 		</dict>
 		<key>87204822-EA61-4C18-A9BB-6ED4DA45AB41</key>
 		<dict>
@@ -712,7 +715,7 @@ Copyright (c) 2020 MikeMajara</string>
 			<key>xpos</key>
 			<integer>330</integer>
 			<key>ypos</key>
-			<integer>530</integer>
+			<integer>520</integer>
 		</dict>
 	</dict>
 	<key>variablesdontexport</key>
