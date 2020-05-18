@@ -3,6 +3,14 @@
     "out_lang": "en",
     "formats": [
         {
+            "title": "Date - timestamp",
+            "format_string": "YYYYMMdd"
+        },
+        {
+            "title": "Datetime - timestamp",
+            "format_string": "YYYYMMddhhmm"
+        },
+        {
             "title": "Short",
             "format_string": "short"
         },
@@ -20,7 +28,7 @@
         },
         {
             "title": "ISO 8601",
-            "format_string": "YYYY-MM-DDThh:mm:ssX"
+            "format_string": "YYYY-MM-ddThh:mm:ssX"
         }
     ]
 }
