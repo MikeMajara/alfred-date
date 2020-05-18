@@ -47,6 +47,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>C920B31F-3044-4C98-9563-20BB19141BF3</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>85BACCFE-F06E-4A3F-BD96-D28EF34A1FCD</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 	</dict>
 	<key>createdby</key>
 	<string>Mike Majara</string>
@@ -420,6 +433,170 @@ sys.stdout.write(json.dumps(result))
 			<key>version</key>
 			<integer>3</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<true/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>keyword</key>
+				<string>dtf</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>1</integer>
+				<key>queuemode</key>
+				<integer>2</integer>
+				<key>runningsubtext</key>
+				<string>Guessing the moment you are refering to...</string>
+				<key>script</key>
+				<string># This script is duplicated and functionality is implemented for
+# both locigs: (with | without) language. Logic should be common
+# and only change is LANGUAGE_PROVIDED.
+# 
+# $WORKFLOW_DIRECTORY/main.py is not the script being executed. 
+# it is just a script to test and ease the development of the workflow. 
+# Code being executed is stored in info.plist and should be modified through
+# alfred to take effect.
+# 
+# important: print nothing else to STDOUT, or it will make your XML/JSON invalid.
+# 
+# Useful documentation: https://www.alfredapp.com/help/workflows/inputs/script-filter/json/
+# date format patterns: https://unicode.org/reports/tr35/tr35-dates.html#Date_Format_Patterns
+# Babel documentation: http://babel.pocoo.org/en/latest/dates.html?highlight=pattern#pattern-syntax
+
+import os, sys
+import traceback
+import json
+
+# add local library path to python path.
+# needed to import 3rd party library installed.
+# 
+# install command example (cd to workflow directory):
+# pip install --prefer-binary --target=./lib dateparser
+sys.path = [os.path.abspath('./lib')] + sys.path
+
+import dateparser
+from babel.dates import format_datetime
+
+LANGUAGE_PROVIDED = False
+
+# Extract arguments from script
+args = sys.argv[1].split()
+format_given = args[0]
+args = args[1:]
+
+with open("./config.json") as f:
+    config = json.load(f)
+
+with open("./locales.json") as f:
+    locales = json.load(f)
+
+fmts = [{
+	"title": format_given,
+	"format_string": format_given
+}]
+lngs = config['languages']
+
+if LANGUAGE_PROVIDED:
+    query = " ".join(args[1:])
+    out_lang = args[0].strip()
+    if len(out_lang) == 2:
+        name = locales[out_lang].get('name')
+        format = locales[out_lang].get('default_format')
+        out_lang = locales[out_lang].get('locale')
+else:
+    query = " ".join(args)
+    out_lang = config['out_lang']
+    
+dt = dateparser.parse(query, languages=lngs)
+
+result = {"items": []}
+try:
+    default_items = [
+        {
+            "valid": True,
+            "icon": None,
+            "title": fmt['format_string'],
+            "subtitle": format_datetime(dt, format=fmt['format_string'], locale=out_lang),
+		    "arg": format_datetime(dt, format=fmt['format_string'], locale=out_lang),
+            "text": {
+                "copy": format_datetime(dt, format=fmt['format_string'], locale=out_lang),
+                "largetype": format_datetime(dt, format=fmt['format_string'], locale=out_lang)
+            }
+        } for fmt in fmts
+    ]
+    result['items'] += default_items
+
+    if LANGUAGE_PROVIDED:
+
+        extra_item = {
+            "valid": True,
+            "icon": None,
+            "title": format_datetime(dt, format=format, locale=out_lang),
+            "subtitle": format + " - Default for " + name,
+		    "arg": format_datetime(dt, format=fmt['format_string'], locale=out_lang),
+            "text": {
+                "copy": format_datetime(dt, format=format, locale=out_lang),
+                "largetype": format_datetime(dt, format=format, locale=out_lang)
+            }
+        }
+        result['items'] += [extra_item]
+
+except Exception as e:
+    traceback.print_exc()
+    # pass
+
+sys.stdout.write(json.dumps(result))
+</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string>dt [moment]. Then ⌘ + c or ⌘ + l to show off.</string>
+				<key>title</key>
+				<string>Date time for given moment</string>
+				<key>type</key>
+				<integer>3</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>C920B31F-3044-4C98-9563-20BB19141BF3</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<true/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+				<key>transient</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>85BACCFE-F06E-4A3F-BD96-D28EF34A1FCD</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string># Date timestamp 🕐
@@ -495,6 +672,13 @@ Copyright (c) 2020 MikeMajara</string>
 			<key>ypos</key>
 			<integer>390</integer>
 		</dict>
+		<key>85BACCFE-F06E-4A3F-BD96-D28EF34A1FCD</key>
+		<dict>
+			<key>xpos</key>
+			<integer>565</integer>
+			<key>ypos</key>
+			<integer>530</integer>
+		</dict>
 		<key>87204822-EA61-4C18-A9BB-6ED4DA45AB41</key>
 		<dict>
 			<key>xpos</key>
@@ -522,6 +706,13 @@ Copyright (c) 2020 MikeMajara</string>
 			<integer>565</integer>
 			<key>ypos</key>
 			<integer>140</integer>
+		</dict>
+		<key>C920B31F-3044-4C98-9563-20BB19141BF3</key>
+		<dict>
+			<key>xpos</key>
+			<integer>330</integer>
+			<key>ypos</key>
+			<integer>530</integer>
 		</dict>
 	</dict>
 	<key>variablesdontexport</key>
