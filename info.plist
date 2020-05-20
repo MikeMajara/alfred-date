@@ -219,7 +219,7 @@ else:
     
 dt = dateparser.parse(query, languages=lngs)
 
-result = {"rerun": 1, "items": []}
+result = {"rerun": 5, "items": []}
 try:
     default_items = [
         {
@@ -361,7 +361,7 @@ else:
     
 dt = dateparser.parse(query, languages=lngs)
 
-result = {"items": []}
+result = {"rerun": 5, "items": []}
 try:
     default_items = [
         {
@@ -525,7 +525,7 @@ else:
     
 dt = dateparser.parse(query, languages=lngs)
 
-result = {"items": []}
+result = {"rerun": 5, "items": []}
 try:
     default_items = [
         {
