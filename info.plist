@@ -225,7 +225,7 @@ try:
         {
             "valid": True,
             "icon": None,
-            "title": fmt['format_string'],
+            "title": fmt['title'],
             "subtitle": format_datetime(dt, format=fmt['format_string'], locale=out_lang),
 		    "arg": format_datetime(dt, format=fmt['format_string'], locale=out_lang),
             "text": {
