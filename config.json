@@ -11,8 +11,8 @@
             "format_string": "YYYYMMddhhmm"
         },
         {
-            "title": "Short",
-            "format_string": "short"
+            "title": "Short date text",
+            "format_string": "MMM dd, YYYY"
         },
         {
             "title": "Medium",
@@ -25,6 +25,10 @@
         {
             "title": "Full",
             "format_string": "full"
+        },
+        {
+            "title": "YYYY/MM/dd hh:mm:ss",
+            "format_string": "YYYY/MM/dd hh:mm:ss"
         },
         {
             "title": "ISO 8601",
