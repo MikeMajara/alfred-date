@@ -74,6 +74,21 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>openwith</key>
+				<string></string>
+				<key>sourcefile</key>
+				<string>{query}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openfile</string>
+			<key>uid</key>
+			<string>9B46EE1F-98A4-41A4-AE35-EE795BBC4DF5</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -99,21 +114,6 @@
 			<string>87204822-EA61-4C18-A9BB-6ED4DA45AB41</string>
 			<key>version</key>
 			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>openwith</key>
-				<string></string>
-				<key>sourcefile</key>
-				<string>{query}</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.openfile</string>
-			<key>uid</key>
-			<string>9B46EE1F-98A4-41A4-AE35-EE795BBC4DF5</string>
-			<key>version</key>
-			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -439,23 +439,6 @@ sys.stdout.write(json.dumps(result))
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>autopaste</key>
-				<true/>
-				<key>clipboardtext</key>
-				<string>{query}</string>
-				<key>transient</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.clipboard</string>
-			<key>uid</key>
-			<string>85BACCFE-F06E-4A3F-BD96-D28EF34A1FCD</string>
-			<key>version</key>
-			<integer>3</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
 				<key>alfredfiltersresultsmatchmode</key>
@@ -600,6 +583,23 @@ sys.stdout.write(json.dumps(result))
 			<key>version</key>
 			<integer>3</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<true/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+				<key>transient</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>85BACCFE-F06E-4A3F-BD96-D28EF34A1FCD</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string># Date timestamp 🕐
@@ -642,7 +642,7 @@ settings (config.json)
 - **out_lang**: string - language you want the output to be in,
 - **formats**: array of objects - 
     - **title**: string - menu item name to display
-    - **format_string**: string - unicode compliant date format. @see [UTS #35: Unicode LDML: Dates](https://unicode.org/reports/tr35/tr35-dates.html#Date_Format_Patterns)
+    - **format_string**: string - unicode compliant date format. @see [UTS #35: Unicode LDML: Dates](https://unicode.org/reports/tr35/tr35-dates.html#Date_Format_Patterns) - [Babel documentation date format](http://babel.pocoo.org/en/latest/dates.html?highlight=milliseconds#date-fields)
 
 supported locales (locales.json)
 You will also find a file `locales.json`, feel free to add support for your locale if it is not there. PRs are welcome.
@@ -718,8 +718,6 @@ Copyright (c) 2020 MikeMajara</string>
 			<integer>520</integer>
 		</dict>
 	</dict>
-	<key>variablesdontexport</key>
-	<array/>
 	<key>version</key>
 	<string>0.2.0</string>
 	<key>webaddress</key>

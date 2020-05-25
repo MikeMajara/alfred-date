@@ -32,7 +32,7 @@ When installed the workflow
 
 If you want to configure the workflow it
 - understands following languages (see Settings on how to set up yours): [dateparser – python parser for human readable dates — DateParser 0.7.4 documentation](https://dateparser.readthedocs.io/en/latest/#supported-languages-and-locales)
-- and speaks the following languages (see Settings to set up your own): [Babel locale aliases](https://github.com/python-babel/babel/blob/8b684d56e90d593d4f431263a6a3fea1aabc0d0c/babel/core.py#L80)
+- and speaks the following languages (see Settings to set up your own): [Babel locale aliases](https://github.com/python-babel/babel/blob/8b684d56e90d593d4f431263a6a3fea1aabc0d0c/babel/core.py#L80) - [Babel documentation date format](http://babel.pocoo.org/en/latest/dates.html?highlight=milliseconds#date-fields)
 
 ## Instalation 👷🏻‍♂️
 1. [Download the workflow](https://github.com/MikeMajara/alfred-date-time-stamp-parser/releases/tag/0.1.0)
