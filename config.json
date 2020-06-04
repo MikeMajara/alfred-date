@@ -1,5 +1,5 @@
 {
-    "languages": ["en", "es"],
+    "languages": ["es"],
     "out_lang": "en",
     "formats": [
         {
@@ -15,16 +15,8 @@
             "format_string": "MMM dd, YYYY"
         },
         {
-            "title": "Medium",
-            "format_string": "medium"
-        },
-        {
-            "title": "Long",
-            "format_string": "long"
-        },
-        {
-            "title": "Full",
-            "format_string": "full"
+            "title": "Fecha esp",
+            "format_string": "dd/MM/YYYY"
         },
         {
             "title": "YYYY/MM/dd hh:mm:ss",
